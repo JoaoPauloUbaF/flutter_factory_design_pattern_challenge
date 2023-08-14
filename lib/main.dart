@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       spaceShip = Utils.generateRandomSpaceShip();
       _spaceShipName = spaceShip.getDisplay();
+      _spaceShipMovement = "";
     });
   }
 
@@ -58,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'SpaceShip:',
             ),
+            const SizedBox(height: 20),
             Text(
               _spaceShipName,
               style: Theme.of(context).textTheme.headlineMedium,
@@ -67,17 +69,24 @@ class _MyHomePageState extends State<MyHomePage> {
               _spaceShipMovement,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            FloatingActionButton(
-                tooltip: 'Move SpaceShip',
-                child: const Icon(Icons.arrow_forward),
-                onPressed: () => {
-                      _spaceShipMovement = spaceShip.move(),
-                      setState(() {}),
-                    }),
-            FloatingActionButton(
-              onPressed: _newRandomSpaceShip,
-              tooltip: 'Generate new SpaceShip',
-              child: const Icon(Icons.add),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FloatingActionButton(
+                  onPressed: _newRandomSpaceShip,
+                  tooltip: 'Generate new SpaceShip',
+                  child: const Icon(Icons.add),
+                ),
+                const SizedBox(width: 20),
+                FloatingActionButton(
+                    tooltip: 'Move SpaceShip',
+                    child: const Icon(Icons.arrow_forward),
+                    onPressed: () => {
+                          _spaceShipMovement = spaceShip.move(),
+                          setState(() {}),
+                        }),
+              ],
             ),
           ],
         ),
